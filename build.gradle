@@ -1,0 +1,49 @@
+plugins {
+  id "com.microsoft.azure.azurefunctions" version "1.5.0"
+}
+apply plugin: 'java'
+apply plugin: "com.microsoft.azure.azurefunctions"
+
+group 'com.functions'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    implementation 'com.microsoft.azure.functions:azure-functions-java-library:1.4.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
+    testImplementation 'org.mockito:mockito-core:3.3.3'
+	compile(group: 'com.azure',  name: 'azure-cosmos', version: '4.8.0')
+
+//	compile group: 'io.netty', classifier:'linux-x86_64',name: 'netty-transport-native-epoll', version: '4.1.51.Final'
+
+    compile(group: 'com.microsoft.azure', name: 'azure-servicebus', version: '3.5.0')
+	{
+		exclude group:'io.netty'
+	}
+    compile group: 'com.microsoft.azure.functions', name: 'azure-functions-java-library', version: '1.3.1'
+
+	/*implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+	implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+	implementation "org.apache.logging.log4j:log4j-jul:${log4jVersion}"
+	implementation "org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}"*/
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+azurefunctions {
+    resourceGroup = 'java-functions-group'
+    appName = 'azure-functions-sample'
+    pricingTier = 'Consumption'
+    region = 'westus'
+    runtime {
+      os = 'windows'
+      javaVersion = '8'
+    }
+    localDebug = "transport=dt_socket,server=y,suspend=n,address=5005"
+}
