@@ -44,7 +44,7 @@ public class Function {
             /* GatewayConnectionConfig config = new GatewayConnectionConfig();
             ConnectionPolicy connectionPolicy = new ConnectionPolicy(config);*/
             context.getLogger().info("COSMOS_ENDPOINT " + "https://abhicosmos.documents.azure.com:443/");
-            context.getLogger().info("COSMOS_KEY " + "oXDnbExo9mtgxnsK2b5IGDMifoIxgiU8Wi0dbnCXlQdRQ4lSik5OVkEcpznTP5b1wPTZWhwhKPC3ms9OvsX3tQ==");
+            context.getLogger().info("COSMOS_KEY " + "");
 
             CosmosClient client =
                 new CosmosClientBuilder()
